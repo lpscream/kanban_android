@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/label_activity_main"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText android:id="@+id/etIp" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="IP принтера" />
+
+            <EditText android:id="@+id/etPort" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="Порт" android:text="9100"
+                android:inputType="number" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginTop="8dp">
+                <EditText android:id="@+id/etLabelWidth" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:hint="Ширина этикетки, мм" android:inputType="numberDecimal" />
+                <EditText android:id="@+id/etLabelHeight" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:hint="Высота этикетки, мм" android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:textStyle="bold" android:text="Текстовые поля" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:textStyle="bold" android:text="Штрихкод" />
+
+            <EditText android:id="@+id/etBarcodeData" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="Данные штрихкода" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText android:id="@+id/etBarcodeX" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="X мм" android:inputType="numberDecimal" />
+                <EditText android:id="@+id/etBarcodeY" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="Y мм" android:inputType="numberDecimal" />
+                <EditText android:id="@+id/etBarcodeW" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="Шир. мм" android:inputType="numberDecimal" />
+                <EditText android:id="@+id/etBarcodeH" android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:hint="Выс. мм" android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <Spinner android:id="@+id/spBarcodeFormat" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="4dp" />
+
+            <EditText android:id="@+id/etQty" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="16dp"
+                android:hint="Количество этикеток" android:text="1" android:inputType="number" />
+
+            <RadioGroup android:id="@+id/rgMode" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+                <RadioButton android:id="@+id/rbCodepage" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:checked="true" android:text="CODEPAGE" />
+                <RadioButton android:id="@+id/rbBitmap" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1" android:text="BITMAP" />
+            </RadioGroup>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:orientation="horizontal">
+                <Button android:id="@+id/btnPreview" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1" android:text="Предпросмотр" />
+                <Button android:id="@+id/btnPrint" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_marginStart="8dp" android:text="Печать" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/label_frame"
+                android:padding="4dp"
+                >
+                <ImageView android:id="@+id/ivPreview" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:adjustViewBounds="true"
+                    android:background="#FFFFFF" android:scaleType="fitCenter" />
+            </FrameLayout>
+
+            <TextView android:id="@+id/tvStatus" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
