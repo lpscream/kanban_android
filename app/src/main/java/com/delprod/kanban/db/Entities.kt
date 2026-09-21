@@ -95,7 +95,7 @@ data class OrderLineWithDetails(
     val nomenclatureName: String,
     val nomenclatureUnit: String,
     val nomenclatureCode: String,
-    val nomenclaturePlu: String,
+    val nomenclaturePlu: String?,
     val uuid: String
 )
 
