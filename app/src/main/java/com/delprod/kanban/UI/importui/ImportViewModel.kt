@@ -3,6 +3,7 @@ package com.delprod.kanban.UI.importui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delprod.kanban.core.logPrint
+import com.delprod.kanban.core.toUserMessage
 import com.delprod.kanban.repository.ImportRepository
 import com.delprod.kanban.data.FoodOrderReport
 import com.delprod.kanban.google.GoogleSheetsLoader
@@ -70,7 +71,7 @@ class ImportViewModel(
             }.onSuccess { report ->
                 _uiState.value = ImportUiState.Loaded(report, report.availableDates.toSet())
             }.onFailure { e ->
-                _uiState.value = ImportUiState.Error(e.message ?: "Ошибка загрузки с Google Sheets")
+                _uiState.value = ImportUiState.Error(e.toUserMessage())
             }
         }
     }
@@ -92,7 +93,7 @@ class ImportViewModel(
             }.onSuccess { report ->
                 _uiState.value = ImportUiState.Loaded(report, report.availableDates.toSet())
             }.onFailure { e ->
-                _uiState.value = ImportUiState.Error(e.message ?: "Ошибка загрузки по ссылке")
+                _uiState.value = ImportUiState.Error(e.toUserMessage())
             }
         }
     }
@@ -132,7 +133,7 @@ class ImportViewModel(
                 val count = state.report.filterByDates(state.selectedDates).size
                 _uiState.value = ImportUiState.Imported(count)
             }.onFailure { e ->
-                _uiState.value = ImportUiState.Error(e.message ?: "Ошибка хранения в базе данных")
+                _uiState.value = ImportUiState.Error(e.toUserMessage())
             }
         }
     }

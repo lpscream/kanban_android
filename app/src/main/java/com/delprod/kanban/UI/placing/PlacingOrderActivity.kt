@@ -112,6 +112,9 @@ class PlacingOrderActivity : AppCompatActivity() {
                 is ClientsListUiState.Loaded -> {
                     binding.root.isVisible = true
                     binding.progressBar.isVisible = false
+                    if (it.itemlList.isEmpty()) {
+                        toast(R.string.server_empty_response_message)
+                    }
                     PlacingClientDialog.create(this@PlacingOrderActivity, it.itemlList){
                         clientEntity = it
                     }
@@ -132,6 +135,9 @@ class PlacingOrderActivity : AppCompatActivity() {
                 is ProductsListUiState.Loaded -> {
                     binding.root.isVisible = true
                     binding.progressBar.isVisible = false
+                    if (it.itemList.isEmpty()) {
+                        toast(R.string.server_empty_response_message)
+                    }
                     adapter = PlacingProductListAdapter(it.itemList)
                     binding.productItemList.layoutManager = LinearLayoutManager(this@PlacingOrderActivity)
                     binding.productItemList.adapter = adapter

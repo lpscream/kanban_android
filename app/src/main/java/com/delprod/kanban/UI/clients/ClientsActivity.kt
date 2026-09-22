@@ -68,6 +68,9 @@ class ClientsActivity : AppCompatActivity() {
                     binding.message.isVisible = false
                     binding.clientList.isVisible = true
                     binding.progressBar.isVisible = false
+                    if (it.clients.isEmpty()) {
+                        toast(R.string.server_empty_response_message)
+                    }
                     initAdapter(it.clients)
                 }
                 is ClientListUiState.Error -> {

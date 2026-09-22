@@ -1,5 +1,6 @@
 package com.delprod.kanban.data.auth
 
+import com.delprod.kanban.core.toUserMessage
 import com.google.gson.Gson
 import retrofit2.HttpException
 
@@ -17,7 +18,7 @@ class AuthRepository(
     }
 
     private fun errorMessageOf(error: Throwable): String {
-        if (error !is HttpException) return error.message ?: "Не удалось подключиться к серверу"
+        if (error !is HttpException) return error.toUserMessage()
         val body = error.response()?.errorBody()?.string()
         val parsed = body?.let { runCatching { gson.fromJson(it, BackendError::class.java) }.getOrNull() }
         return parsed?.message ?: "Неверный логин или пароль"

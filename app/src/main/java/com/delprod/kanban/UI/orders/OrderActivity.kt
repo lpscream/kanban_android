@@ -98,6 +98,9 @@ class OrderActivity : AppCompatActivity() {
                     binding.mainViewLayout.isVisible = true
                     binding.progressBar.isVisible = false
                     logPrint(it.listItems.toString())
+                    if (it.listItems.isEmpty()) {
+                        toast(R.string.server_empty_response_message)
+                    }
                     OrdersListDialog.create(
                         this@OrderActivity,
                         layoutInflater,
@@ -147,6 +150,7 @@ class OrderActivity : AppCompatActivity() {
                     binding.listItem.isVisible = false
                     binding.progressBar.isVisible = false
                     binding.emptyListMessage.isVisible = true
+                    toast(R.string.server_empty_response_message)
                 }
             }
         }
@@ -156,6 +160,9 @@ class OrderActivity : AppCompatActivity() {
                 is NomenclatueListState.Idle -> {}
                 is NomenclatueListState.Loading -> {}
                 is NomenclatueListState.Loaded -> {
+                    if (it.listItems.isEmpty()) {
+                        toast(R.string.server_empty_response_message)
+                    }
                     AddProductToOrderDialog.create(
                         this@OrderActivity,
                         layoutInflater,

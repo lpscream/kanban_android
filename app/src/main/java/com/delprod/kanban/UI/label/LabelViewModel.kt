@@ -2,6 +2,7 @@ package com.delprod.kanban.UI.label
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delprod.kanban.core.toUserMessage
 import com.delprod.kanban.db.LabelData
 import com.delprod.kanban.db.PrinterSettings
 import com.delprod.kanban.repository.ImportRepository
@@ -31,7 +32,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -45,7 +46,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -90,7 +91,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 _uiLabelNamesState.value = LabelListUiState.Loaded(it)
             }.onFailure {
-                _uiLabelNamesState.value = LabelListUiState.Error(it.message!!)
+                _uiLabelNamesState.value = LabelListUiState.Error(it.toUserMessage())
             }
         }
     }
@@ -105,7 +106,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 _uiLabelState.value = LabelUiState.Loaded(it)
             }.onFailure {
-                _uiLabelState.value = LabelUiState.Error(it.message.toString())
+                _uiLabelState.value = LabelUiState.Error(it.toUserMessage())
             }
         }
     }
@@ -119,7 +120,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 onSuccess(it)
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -132,7 +133,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 _uiLabelState.value = LabelUiState.Deleted
             }.onFailure {
-                _uiLabelState.value = LabelUiState.Error(it.message.toString())
+                _uiLabelState.value = LabelUiState.Error(it.toUserMessage())
             }
         }
     }
@@ -147,7 +148,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 _uiPrinterNamesState.value = PrinterListUiState.Loaded(it)
             }.onFailure {
-                _uiPrinterNamesState.value = PrinterListUiState.Error(it.message.toString())
+                _uiPrinterNamesState.value = PrinterListUiState.Error(it.toUserMessage())
             }
         }
     }
@@ -163,7 +164,7 @@ class LabelViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }

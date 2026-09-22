@@ -2,6 +2,7 @@ package com.delprod.kanban.UI.clients
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delprod.kanban.core.toUserMessage
 import com.delprod.kanban.db.SubdivisionEntity
 import com.delprod.kanban.repository.ImportRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +27,7 @@ class ClientsViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 _uiClientListStateFlow.value = ClientListUiState.Loaded(it)
             }.onFailure {
-                _uiClientListStateFlow.value = ClientListUiState.Error(it.message.toString())
+                _uiClientListStateFlow.value = ClientListUiState.Error(it.toUserMessage())
             }
         }
     }
@@ -42,7 +43,7 @@ class ClientsViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -59,7 +60,7 @@ class ClientsViewModel(private val repository: ImportRepository): ViewModel() {
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }

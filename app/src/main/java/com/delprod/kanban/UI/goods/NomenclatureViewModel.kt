@@ -2,6 +2,7 @@ package com.delprod.kanban.UI.goods
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delprod.kanban.core.toUserMessage
 import com.delprod.kanban.data.Settings
 import com.delprod.kanban.db.NomenclatureEntity
 import com.delprod.kanban.repository.ImportRepository
@@ -25,7 +26,7 @@ class NomenclatureViewModel(private val repository: ImportRepository, private va
             }.onSuccess {
                 _uiNomenklatureListState.value = NomenclatureList.Loaded(it)
             }.onFailure {
-                _uiNomenklatureListState.value = NomenclatureList.Error(it.message.toString())
+                _uiNomenklatureListState.value = NomenclatureList.Error(it.toUserMessage())
             }
         }
     }
@@ -37,7 +38,7 @@ class NomenclatureViewModel(private val repository: ImportRepository, private va
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -50,7 +51,7 @@ class NomenclatureViewModel(private val repository: ImportRepository, private va
             }.onSuccess {
                 _uiNomenklatureListState.value = NomenclatureList.Loaded(it)
             }.onFailure {
-                _uiNomenklatureListState.value = NomenclatureList.Error(it.message.toString())
+                _uiNomenklatureListState.value = NomenclatureList.Error(it.toUserMessage())
             }
         }
     }

@@ -2,6 +2,7 @@ package com.delprod.kanban.UI.placing
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delprod.kanban.core.toUserMessage
 import com.delprod.kanban.data.models.ProductListItem
 import com.delprod.kanban.db.OrderLineEntity
 import com.delprod.kanban.db.SubdivisionEntity
@@ -36,7 +37,7 @@ class PlaicingOrderViewModel(private val repository: ImportRepository): ViewMode
                     )
                 })
             }.onFailure {
-                _uiProductListUiState.value = ProductsListUiState.Error(it.message.toString())
+                _uiProductListUiState.value = ProductsListUiState.Error(it.toUserMessage())
             }
         }
     }
@@ -50,7 +51,7 @@ class PlaicingOrderViewModel(private val repository: ImportRepository): ViewMode
             }.onSuccess {
                 _uiClientsListUiState.value = ClientsListUiState.Loaded(it)
             }.onFailure {
-                _uiClientsListUiState.value = ClientsListUiState.Error(it.message.toString())
+                _uiClientsListUiState.value = ClientsListUiState.Error(it.toUserMessage())
             }
         }
     }
@@ -64,7 +65,7 @@ class PlaicingOrderViewModel(private val repository: ImportRepository): ViewMode
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }

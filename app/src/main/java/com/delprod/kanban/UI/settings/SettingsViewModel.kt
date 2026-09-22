@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delprod.kanban.R
 import com.delprod.kanban.core.logPrint
+import com.delprod.kanban.core.toUserMessage
 import com.delprod.kanban.data.Settings
 import com.delprod.kanban.data.telegram.TelegramRepository
 import com.delprod.kanban.data.telegram.TelegramResponse
@@ -143,7 +144,7 @@ class SettingsViewModel(
             }.onSuccess {
                 onSuccess(it)
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -158,7 +159,7 @@ class SettingsViewModel(
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }

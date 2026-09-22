@@ -70,6 +70,9 @@ class GoodsActivity : AppCompatActivity() {
                     binding.goodsItemRecyclerView.isVisible = true
                     binding.message.isVisible = false
                     binding.progressBar.isVisible = false
+                    if (it.listItems.isEmpty()) {
+                        toast(R.string.server_empty_response_message)
+                    }
                     initAdapter(it.listItems)
                 }
             }

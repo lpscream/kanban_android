@@ -3,6 +3,7 @@ package com.delprod.kanban.UI.orders
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delprod.kanban.core.logPrint
+import com.delprod.kanban.core.toUserMessage
 import com.delprod.kanban.data.Settings
 import com.delprod.kanban.data.goods.BarcodeData
 import com.delprod.kanban.data.goods.BarcodeIdType
@@ -53,7 +54,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -67,7 +68,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
             }.onSuccess {
                 _uiOrderListState.value = OrderListState.Loaded(it)
             }.onFailure {
-                _uiOrderListState.value = OrderListState.Error(it.message.toString())
+                _uiOrderListState.value = OrderListState.Error(it.toUserMessage())
             }
         }
     }
@@ -83,7 +84,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
                 logPrint("nomenclature fetched")
                 _uiNomenclatureListState.value = NomenclatueListState.Loaded(it)
             }.onFailure {
-                _uiNomenclatureListState.value = NomenclatueListState.Error(it.message.toString())
+                _uiNomenclatureListState.value = NomenclatueListState.Error(it.toUserMessage())
             }
         }
     }
@@ -118,7 +119,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
                 logPrint(it.toString())
             }.onFailure {
                 logPrint("error fetching product list: ${it.message}")
-                _uiProductsList.value = ProductsList.Error(it.message.toString())
+                _uiProductsList.value = ProductsList.Error(it.toUserMessage())
             }
         }
     }
@@ -135,7 +136,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
             }.onSuccess {
                 onSuccses()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -151,7 +152,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -167,7 +168,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
             }.onSuccess {
                 onSuccess()
             }.onFailure {
-                onFailure(it.message.toString())
+                onFailure(it.toUserMessage())
             }
         }
     }
@@ -195,7 +196,7 @@ class DatabaseViewModel(private val repository: ImportRepository, private val se
                     onSuccess(item.uuid)
                 }.onFailure {
                     logPrint(it.toString())
-                    onFailure(it.message.toString())
+                    onFailure(it.toUserMessage())
                 }
             }
         }else{onFailure("Такого товара не существует")}

@@ -135,4 +135,5 @@
     <string name="name_label">Наименование этикетки</string>
     <string name="no_product_in_order">Товара нет в заказе.</string>
     <string name="storage_time_days">Срок храения в днях</string>
+    <string name="server_empty_response_message">Сервер вернул пустой список</string>
 </resources>
